@@ -28,12 +28,17 @@ requirements:
     - distro
 
 test:
+  source_files:
+    - tests
   imports:
     - iterative_telemetry
   requires:
     - pip
+    - pytest
+    - pytest-mock
   commands:
     - pip check
+    - pytest -vv tests
 
 about:
   home: https://github.com/iterative/telemetry-python
