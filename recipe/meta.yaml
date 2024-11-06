@@ -10,17 +10,18 @@ source:
   sha256: 53686c3e912a33e8bf6975b878fd4bd0a7d589c8bad0a6a5573714af9e731dc2
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  skip: true  # [py<38]
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
     - setuptools_scm >=6.3.1
+    - wheel
   run:
-    - python >=3.7
+    - python
     - requests
     - appdirs
     - filelock
@@ -37,8 +38,13 @@ test:
 about:
   home: https://github.com/iterative/telemetry-python
   summary: Common library to send usage telemetry
+  description: |
+    Common library to send usage telemetry,
   license: Apache-2.0
   license_file: LICENSE
+  license_family: Apache
+  doc_url: https://github.com/iterative/telemetry-python/blob/main/README.rst
+  dev_url: https://github.com/iterative/telemetry-python
 
 extra:
   recipe-maintainers:
